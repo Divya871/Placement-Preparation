@@ -1,0 +1,21 @@
+void path(Node*root,vector<vector<int>>&ans,vector<int>&smallans)
+ {
+     if(root==NULL){return;}
+     if(root->left==NULL && root->right==NULL){
+         smallans.push_back(root->data);
+         ans.push_back(smallans);
+         smallans.pop_back();
+     }
+     smallans.push_back(root->data);
+     path(root->left,ans,smallans);
+     path(root->right,ans,smallans);
+     smallans.pop_back();
+ }
+vector<vector<int>> Paths(Node* root)
+{
+    // Code here
+    vector<int>smallans;
+    vector<vector<int>>ans;
+    path(root,ans,smallans);
+    return ans;
+}

@@ -1,0 +1,12 @@
+ void one(TreeNode* root,vector<int>&ans)
+  {
+      if(root==null || (root.left==null && root.right==null)){return;}
+      if(root.left==null || root.right==null) ans.add(root.val);
+      one(root.left,ans);
+      one(root.right,ans);
+  }
+vector<int> exactlyOneChild(TreeNode *root) {
+    vector<int>ans;
+    one(root,ans);
+    return ans;
+  }

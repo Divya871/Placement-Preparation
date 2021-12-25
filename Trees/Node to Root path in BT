@@ -1,0 +1,20 @@
+
+bool find(TreeNode*root,int data,vector<TreeNode*>&ans)
+{
+  if(root==NULL){return false;}
+  if(root->val==data){ans.push_back(root);return true;}
+  bool res=find(root->left,data,ans) || find(root->right,data,ans);
+  if(res==true)
+  { ans.push_back(root); }
+  return res;
+  }
+
+
+
+
+vector<TreeNode*>ntr(TreeNode*root,int data)
+{
+  vector<TreeNode*>ans;
+ find(root,data,ans);
+  return ans;
+ }

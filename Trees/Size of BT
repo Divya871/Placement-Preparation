@@ -1,0 +1,31 @@
+TC=O(N),SC=O(N)
+
+int getSize(Node* node)
+{
+   // Your code here
+   if(node==NULL){return 0;}
+   int l=getSize(node->left);
+   int r=getSize(node->right);
+   return l+r+1;
+}
+
+TC=O(N),SC=O(max level)
+
+int getSize(Node*root)
+{
+   // Your code here
+   queue<Node*>q;
+   q.push(root);
+   int count=1;
+   
+   while(!q.empty())
+   {  int size=q.size();
+       while(size-->0)
+       {
+           Node*rn=q.front();q.pop();
+           if(rn->left!=NULL){q.push(rn->left);count++;}
+           if(rn->right!=NULL){q.push(rn->right);count++;}
+       }
+   }
+   return count;
+}

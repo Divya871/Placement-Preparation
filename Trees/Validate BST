@@ -1,0 +1,39 @@
+TreeNode*right(TreeNode*node,TreeNode*curr)
+    {
+        while(node->right!=NULL && node->right!=curr){node=node->right;}
+        return node;
+    }
+    bool isValidBST(TreeNode* root) {
+       TreeNode*curr=root;
+        long prev=-(long)1e13;
+        bool flag=true;
+       while(curr!=NULL)
+       {
+           TreeNode*left=curr->left;
+           if(left==NULL)
+           {
+               if(prev>=curr->val)
+               {
+                   flag=false;
+               }
+               prev=curr->val;
+               curr=curr->right;
+           }
+           else
+           {
+               TreeNode*rmn=right(left,curr);
+               if(rmn->right==NULL){rmn->right=curr;curr=curr->left;}
+               else
+               {
+                   rmn->right=nullptr;
+                  if(prev>=curr->val)
+               {
+                   flag=false;
+               }
+               prev=curr->val;
+               curr=curr->right; 
+               }
+           }
+       }
+        return flag;
+    }

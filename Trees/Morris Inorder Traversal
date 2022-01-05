@@ -1,0 +1,41 @@
+public static TreeNode rightmost(TreeNode curr,TreeNode left)
+  {
+      while(curr.right!=null && curr.right!=left)
+      {
+          curr=curr.right;
+      }
+      return curr;
+  }
+  
+  public static ArrayList<Integer> morrisInTraversal(TreeNode root) {
+  
+      ArrayList<Integer>ans=new ArrayList<>();
+      TreeNode curr=root;
+      
+      while(curr!=null)
+      {TreeNode left=curr.left;
+          if(left==null)
+          {
+              ans.add(curr.val);
+              curr=curr.right;
+          }
+          else
+          {
+              TreeNode rmn=rightmost(left,curr);
+              if(rmn.right==null)
+              {
+                  rmn.right=curr;
+                  curr=curr.left;
+              }
+              else
+              {
+                  rmn.right=null;
+                  ans.add(curr.val);
+                  curr=curr.right;
+              }
+          }
+      }
+      
+      
+    return ans;
+  }

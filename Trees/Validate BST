@@ -37,3 +37,32 @@ TreeNode*right(TreeNode*node,TreeNode*curr)
        }
         return flag;
     }
+    
+    
+    
+    
+    
+    
+    
+    void insertallleft(TreeNode*root,list<TreeNode*>&st)
+    {
+        while(root!=NULL)
+        {
+            st.push_front(root);
+            root=root->left;
+        }
+    }
+    bool isValidBST(TreeNode* root) {
+        list<TreeNode*>st;
+        insertallleft(root,st);
+        long prev=-(long)1e13;
+        while(st.size()!=0)
+        {
+            TreeNode*rnode=st.front();st.pop_front();
+            if(prev>=rnode->val){return false;}
+            prev=rnode->val;
+            insertallleft(rnode->right,st);
+        }
+        return true;
+        
+    }

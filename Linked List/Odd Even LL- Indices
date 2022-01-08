@@ -1,0 +1,26 @@
+ ListNode* oddEvenList(ListNode* head) {
+        ListNode*oddD=new ListNode(-1),*evenD=new ListNode(-1);
+        ListNode*odd=oddD,*even=evenD;
+        ListNode*curr=head;
+        int i=0;
+        while(curr!=NULL)
+        {
+            if(i%2!=0)
+            {
+                odd->next=curr;
+                curr=curr->next;
+                odd=odd->next;
+            }
+            else
+            {
+                even->next=curr;
+                curr=curr->next;
+                even=even->next;
+            }
+            i++;
+        }
+        even->next=odd->next=NULL;
+        even->next=oddD->next;
+        return evenD->next;
+        
+    }

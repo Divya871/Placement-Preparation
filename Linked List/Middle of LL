@@ -1,0 +1,28 @@
+ListNode* middleNode(ListNode* head) {
+        int count=0;
+        ListNode*curr=head;
+        while(curr!=NULL)
+        {
+            count++;
+            curr=curr->next;
+        }
+        curr=head;
+        int count1=0;
+        while(count1!=count/2)
+        {
+            count1++;
+            curr=curr->next;
+        }
+    return curr;}
+    
+    
+    
+     ListNode* middleNode(ListNode* head) {
+        ListNode*slow=head,*fast=head;
+        while(fast!=NULL && fast->next!=NULL)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+    }

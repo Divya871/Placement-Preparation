@@ -1,0 +1,26 @@
+ Node* divide(int N, Node *head){
+        // code here
+       Node*evenD=new Node(-1);
+       Node*even=evenD;
+       Node*oddD=new Node(-1);
+       Node*odd=oddD;
+       Node*curr=head;
+       while(curr!=NULL)
+       {
+           if(curr->data%2==0)
+           {
+               even->next=curr;
+               even=even->next;
+               curr=curr->next;
+           }
+           else
+           {
+               odd->next=curr;
+               odd=odd->next;
+               curr=curr->next;
+           }
+       }
+       even->next=odd->next=NULL;
+       even->next=oddD->next;
+       return evenD->next;
+    }

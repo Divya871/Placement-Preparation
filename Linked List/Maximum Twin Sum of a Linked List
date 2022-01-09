@@ -1,0 +1,38 @@
+class Solution {
+public:
+    ListNode* middle(ListNode* head) {
+       
+        ListNode*slow=head,*fast=head;
+        while(fast!=NULL && fast->next!=NULL)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+    }
+     ListNode* reverse(ListNode* head) {
+        ListNode*prev=NULL,*curr=head,*n;
+        while(curr!=NULL)
+        {
+            n=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=n;
+        }
+        head=prev;
+        return head;
+    }
+    int pairSum(ListNode* head) {
+        ListNode*mid=middle(head);
+        mid=reverse(mid);
+        ListNode*c1=head,*c2=mid;
+        int sum=0;
+        while(c2!=NULL)
+        {
+            sum=max(sum,c1->val+c2->val);
+            c1=c1->next;
+            c2=c2->next;
+        }
+       return sum;
+    }
+};

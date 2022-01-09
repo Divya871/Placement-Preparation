@@ -1,0 +1,6 @@
+ListNode* sortList(ListNode* head) {
+        if(head==NULL || head->next==NULL){return head;}
+        ListNode*mid=middle(head);
+        ListNode*nhead=mid->next;
+        mid->next=NULL;
+        return mergeTwoLists(sortList(head),sortList(nhead));}

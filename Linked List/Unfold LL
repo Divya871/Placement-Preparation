@@ -1,0 +1,26 @@
+public static ListNode reverse(ListNode head) {
+        ListNode prev=null,curr=head,n;
+        while(curr!=null)
+        {
+            n=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=n;
+        }
+        head=prev;
+        return head;}
+        
+    public static void unfold(ListNode head) {
+      ListNode h1=head,h2=head.next,c1=h1,c2=h2,f;
+      while(c2!=null && c2.next!=null)
+      {
+          f=c2.next;
+          c1.next=f;
+          c2.next=f.next;
+          c1=f;
+          c2=c1.next;
+      }
+      h2=reverse(h2);
+      c1.next=h2;
+      
+    }

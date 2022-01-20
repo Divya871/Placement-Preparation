@@ -1,0 +1,63 @@
+METHOD-1
+
+ void NSOR(vector<int> &arr, vector<int> &ans)
+{
+    int n = arr.size();
+    ans.resize(n, n); //Java :  Arrays.fill(ans,n);
+
+    stack<int> st;
+    for (int i = 0; i < n; i++)
+    {
+        while (st.size() != 0 && arr[st.top()] > arr[i])
+        {
+            ans[st.top()] = i;
+            st.pop();
+        }
+        st.push(i);
+    }
+}
+
+void NSOL(vector<int> &arr, vector<int> &ans)
+{
+    int n = arr.size();
+    ans.resize(n, -1); //Java :  Arrays.fill(ans,-1);
+
+    stack<int> st;
+    for (int i = n - 1; i >= 0; i--)
+    {
+        while (st.size() != 0 && arr[st.top()] > arr[i])
+        {
+            ans[st.top()] = i;
+            st.pop();
+        }
+        st.push(i);
+    }
+}
+    
+    
+    int largestRectangleArea(vector<int> &heights)
+{
+    int n = heights.size();
+    vector<int> nsol;
+    vector<int> nsor;
+    NSOL(heights, nsol);
+    NSOR(heights, nsor);
+
+    int maxArea = 0;
+    for (int i = 0; i < n; i++)
+    {
+        int h = heights[i];
+        int w = nsor[i] - nsol[i] - 1;
+
+        maxArea = max(maxArea, h * w);
+    }
+
+    return maxArea;
+}
+
+
+
+
+
+METHOD-2
+

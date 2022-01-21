@@ -1,0 +1,75 @@
+class Solution {
+public:
+    void NSOR(vector<int> &arr, vector<int> &ans)
+{
+    int n = arr.size();
+    ans.resize(n, n); //Java :  Arrays.fill(ans,n);
+
+    stack<int> st;
+    for (int i = 0; i < n; i++)
+    {
+        while (st.size() != 0 && arr[st.top()] > arr[i])
+        {
+            ans[st.top()] = i;
+            st.pop();
+        }
+        st.push(i);
+    }
+}
+
+void NSOL(vector<int> &arr, vector<int> &ans)
+{
+    int n = arr.size();
+    ans.resize(n, -1); //Java :  Arrays.fill(ans,-1);
+
+    stack<int> st;
+    for (int i = n - 1; i >= 0; i--)
+    {
+        while (st.size() != 0 && arr[st.top()] > arr[i])
+        {
+            ans[st.top()] = i;
+            st.pop();
+        }
+        st.push(i);
+    }
+}
+       int largestRectangleArea(vector<int> &heights)
+{
+    int n = heights.size();
+    vector<int> nsol;
+    vector<int> nsor;
+    NSOL(heights, nsol);
+    NSOR(heights, nsor);
+
+    int maxArea = 0;
+    for (int i = 0; i < n; i++)
+    {
+        int h = heights[i];
+        int w = nsor[i] - nsol[i] - 1;
+
+        maxArea = max(maxArea,(h<w)?h* h:w * w);
+    }
+
+    return maxArea;
+}
+    int maximalSquare(vector<vector<char>>& matrix) {
+              if (matrix.size() == 0 || matrix[0].size()== 0)
+            return 0;
+        int n = matrix.size();
+        int m = matrix[0].size();
+        int maxRec = 0;
+       vector<int>heights(m);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                char ch = matrix[i][j];
+                heights[j] = ch == '1' ? heights[j] + 1 : 0;
+            }
+
+            maxRec = max(maxRec, largestRectangleArea(heights));
+        }
+
+        return maxRec;
+    }
+  
+    
+};

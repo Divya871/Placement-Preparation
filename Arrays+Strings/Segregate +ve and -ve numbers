@@ -1,0 +1,14 @@
+void binSort(int arr[], int N)
+{
+   int ptr=-1,itr=0;
+   while(i<N)
+   {
+       if(arr[itr]<0)
+       {
+           ptr++;
+           swap(ptr,itr);
+       }
+       itr++;
+   }
+   
+}

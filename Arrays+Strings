@@ -1,0 +1,15 @@
+void binSort(int arr[], int N)
+{
+   int ptr=-1,itr=0;
+   while(itr<N)
+   {
+       if(arr[itr]==0)
+       {
+           ptr++;
+           int temp=arr[itr];
+           arr[itr]=arr[ptr];
+           arr[ptr]=temp;
+       }
+       itr++;
+   }
+}

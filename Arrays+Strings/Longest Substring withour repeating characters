@@ -15,3 +15,31 @@ int lengthOfLongestSubstring(string s) {
         }
         return len;
     }
+    
+    
+    
+    
+    
+    // Print kardo vo string
+    
+        int lengthOfLongestSubstring(string s) {
+     int n=s.length();
+     int si=0,ei=0,count=0,len=0,gsi=0,gei=0;
+        vector<int>freq(128,0);
+        while(ei<n)
+        {
+            if(freq[s[ei++]]++>0){count++;}
+            while(count>0)
+            {
+                if(freq[s[si++]]-->1){count--;}
+            }
+            while(ei-si>len)
+            {
+                len=max(len,ei-si);
+                gsi=si;
+                gei=ei;
+            }
+        }
+        cout<<s.substr(gsi,gei);
+        return len;
+    }

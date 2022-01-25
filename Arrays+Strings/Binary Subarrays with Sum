@@ -1,0 +1,16 @@
+ int atmostSum(vector<int>&nums,int goal)
+    {
+         int n=nums.size(),si=0,ei=0,sum=0,count=0;
+        while(ei<n)
+        {
+            sum+=nums[ei++];
+            while(sum > goal)
+            
+                sum-=nums[si++];
+                count+=ei-si;
+        }
+        return count;
+    }
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+       return atmostSum(nums,goal)-(goal!=0?atmostSum(nums,goal-1):0);
+    }

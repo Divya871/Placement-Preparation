@@ -1,0 +1,18 @@
+int atmostKdistinct(vector<int>&nums,int k)
+    {
+        vector<int>freq(20001);
+        int n=nums.size(),si=0,ei=0,count=0,ans=0;
+        while(ei<n)
+        {
+            if(freq[nums[ei++]]++==0){count++;}
+            while(count>k)
+            {
+                if(freq[nums[si++]]--==1){count--;}
+            }
+            ans+=ei-si;
+        }
+        return ans;
+    }
+    int subarraysWithKDistinct(vector<int>& nums, int k) {
+        return atmostKdistinct(nums,k)-atmostKdistinct(nums,k-1);
+    }

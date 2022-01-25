@@ -1,0 +1,17 @@
+ int atmostOdd(vector<int>&nums,int k)
+    {
+        int n=nums.size(),si=0,ei=0,count=0,ans=0;
+        while(ei<n)
+        {
+            if((nums[ei++]&1) !=0 ) {count++;}
+            while(count>k)
+            {
+                if((nums[si++] &1) !=0 ) {count--;}
+            }
+            ans+=ei-si;
+        }
+        return ans;
+    }
+    int numberOfSubarrays(vector<int>& nums, int k) {
+        return atmostOdd(nums,k)-atmostOdd(nums,k-1);
+    }

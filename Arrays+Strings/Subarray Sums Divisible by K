@@ -1,0 +1,32 @@
+ int subarraysDivByK(vector<int>& nums, int k) {
+        int n=nums.size(),ei=0,sum=0,ans=0;
+        vector<int>rem(k);
+        rem[0]=1;
+        while(ei<n)
+        {
+            sum+=nums[ei++];
+            int r=(sum%k+k)%k;
+            ans+=rem[r];
+            rem[r]++;
+        }
+        return ans;
+    }
+    
+    
+    
+    
+    // using hashmap
+    
+    int subarraysDivByK(vector<int>& nums, int k) {
+        int n=nums.size(),ei=0,sum=0,ans=0;
+        unordered_map<int,int>rem;
+        rem.emplace(0,1);
+        while(ei<n)
+        {
+            sum+=nums[ei++];
+            int r=(sum%k+k)%k;
+            ans+=rem[r];
+            rem[r]=rem[r]+1;
+        }
+        return ans;
+    }

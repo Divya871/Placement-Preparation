@@ -1,0 +1,19 @@
+long long int countSubarrWithEqualZeroAndOne(int arr[], int n)
+    {
+        //Your code here
+        unordered_map<int,int>map;
+        map.insert({0, 1});
+        int ei = 0, count = 0, sum = 0;
+
+        while (ei < n) {
+            int val = arr[ei++];
+            sum += val;
+            if (val == 0)
+                sum += -1;
+
+            count += map[sum];
+            map[sum]=map[sum]+1;
+        }
+
+        return count;
+    }

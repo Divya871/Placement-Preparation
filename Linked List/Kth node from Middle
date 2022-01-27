@@ -1,0 +1,27 @@
+int counth(ListNode*head)
+ {
+     ListNode*curr=head;
+     int count=0;
+     while(curr!=NULL)
+     {
+         count++;
+         curr=curr->next;
+     }
+     return count;
+ }
+int Solution::solve(ListNode* head, int k) {
+    int n=counth(head);
+    int req=(n/2+1)-k;
+    if(req<=0){return -1;}
+    else
+    {
+        ListNode*curr=head;
+        int count=1;
+        while(curr!=NULL)
+        {
+            if(count==req){return curr->val;}
+            count++;
+            curr=curr->next;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+ListNode* Solution::solve(ListNode* head, int k) {
+    ListNode*curr=head,*prev=NULL,*n=NULL;
+    int count=0;
+    while(curr!=NULL && count<k)
+    {
+        n=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=n;
+        count++;
+    }
+
+    count=0;
+    if(head!=NULL){head->next=curr;}
+    while(count<k-1 && curr!=NULL)
+    {
+        curr=curr->next;
+        count++;
+    }
+
+    if(curr!=NULL)
+    {
+        curr->next=solve(curr->next,k);
+    }
+    return prev;
+}

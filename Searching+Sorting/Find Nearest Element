@@ -1,0 +1,15 @@
+int nearest(vector<int>&arr,int data)
+{
+    int n=arr.size();
+    int si=0,ei=n-1;
+    if(n==0){return 0;}
+    if(data<arr[0] || data>=arr[n-1]){return data<arr[0] ? arr[0]:arr[n-1];}
+    
+    while(si<=ei)
+    {
+        int mid=(si+ei)/2;
+        if(arr[mid]<=data){si=mid+1;}
+        else {ei=mid-1;}
+    }
+    return data-arr[ei]<=arr[ei]-data? arr[ei]:arr[si];
+}

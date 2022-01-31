@@ -1,0 +1,42 @@
+    int firstIdx(vector<int>&arr,int data)
+{
+    int n=arr.size();
+    int si=0,ei=n-1;
+    while(si<=ei)
+    {
+        int mid=(si+ei)/2;
+        if(arr[mid]==data)
+        {
+            if(mid-1>=0 && arr[mid-1]==data)
+            {ei=mid-1;}
+            else {return mid;}
+        }
+        else if(arr[mid]>data){ei=mid-1;}
+        else {si=mid+1;}
+    }
+    return -1;
+}
+
+
+int lastIdx(vector<int>&arr,int data)
+{
+    int n=arr.size();
+    int si=0,ei=n-1;
+    while(si<=ei)
+    {
+        int mid=(si+ei)/2;
+        if(arr[mid]==data)
+        {
+            if(mid+1<n && arr[mid+1]==data)
+            {si=mid+1;}
+            else {return mid;}
+        }
+        else if(arr[mid]>data){ei=mid-1;}
+        else {si=mid+1;}
+    }
+    return -1;
+}
+    
+    vector<int> searchRange(vector<int>& arr, int data) {
+        return {firstIdx(arr,data),lastIdx(arr,data)};
+    }

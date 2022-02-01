@@ -1,0 +1,33 @@
+void prepareAns(vector<vector<int>> &ans, vector<vector<int>> &smallAns, int fixEle)
+{
+
+    for (vector<int> &arr : smallAns)
+    {
+        vector<int> ar;
+        ar.push_back(fixEle);
+        for (int ele : arr)
+            ar.push_back(ele);
+        ans.push_back(ar);
+    }
+}
+
+vector<vector<int>> threeSum(vector<int> &arr, int target, int si, int ei)
+{
+    vector<vector<int>> ans;
+    for (int i = si; i < ei;)
+    {
+        vector<vector<int>> smallAns = twoSum(arr, target - arr[i], i + 1, ei);
+        prepareAns(ans, smallAns, arr[i]);
+        i++;
+        while (i < ei && arr[i] == arr[i - 1])
+            i++;
+    }
+
+    return ans;
+}
+    vector<vector<int>> threeSum(vector<int>& arr) {
+       int n=arr.size();
+        sort(arr.begin(),arr.end());
+        vector<vector<int>>ans=threeSum(arr,0,0,n-1);
+        return ans;
+    }
